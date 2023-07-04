@@ -11,7 +11,10 @@ return {
     ["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
     ["<leader>bD"] = {
       function()
-        require("astronvim.utils.status").heirline.buffer_picker(function(bufnr) require("astronvim.utils.buffer").close(bufnr) end)
+        require("astronvim.utils.status").heirline.buffer_picker(function(bufnr)
+          require("astronvim.utils.buffer").close(
+            bufnr)
+        end)
       end,
       desc = "Pick to close",
     },
@@ -19,11 +22,28 @@ return {
     -- this is useful for naming menus
     ["<leader>b"] = { name = "Buffers" },
 
-    ["<A-h>"] = { "<cmd>bnext<cr>", desc = "Next buffer" },
-    ["<A-l>"] = { "<cmd>bprevious<cr>", desc = "Previous buffer" },
+    --clear highlights
+    ["<leader>i"] = { "<cmd>noh<cr>", desc = "Clear highlights" },
 
-    -- quick save
-    -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+    -- move between buffers
+    ["<A-l>"] = { "<cmd>bnext<cr>", desc = "Next buffer" },
+    ["<A-h>"] = { "<cmd>bprevious<cr>", desc = "Previous buffer" },
+
+    -- move line up or down
+    ["<A-k>"] = { ":m .-2<cr>==", desc = "Move line up" },
+    ["<A-j>"] = { ":m .+1<cr>==", desc = "Move line down" },
+  },
+  v = {
+    -- indent selection without leaving visual mode
+    ["<"] = { "<gv", desc = "Indent left" },
+    [">"] = { ">gv", desc = "Indent right" },
+
+    -- move selection up or down
+    ["<A-j>"] = { ":m '>+1<CR>gv=gv", desc = "Move selection down" },
+    ["<A-k>"] = { ":m '<-2<CR>gv=gv", desc = "Move selection up" },
+
+    -- paste without yanking
+    ["p"] = { '"_dP', desc = "Paste without yanking" },
   },
   t = {
     -- setting a mapping to false will disable it
