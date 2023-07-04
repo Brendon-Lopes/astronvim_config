@@ -32,6 +32,11 @@ return {
     -- move line up or down
     ["<A-k>"] = { ":m .-2<cr>==", desc = "Move line up" },
     ["<A-j>"] = { ":m .+1<cr>==", desc = "Move line down" },
+
+    -- Neotest mappings
+    ["<leader>s"] = { name = "Neotest" },
+    ["<leader>sc"] = { "<cmd>lua require('neotest').run.run()<CR>", desc = "Run tests on current file" },
+    ["<leader>ss"] = { "<cmd>lua require('neotest').summary.toggle()<CR>", desc = "Toggle summary" },
   },
   v = {
     -- indent selection without leaving visual mode

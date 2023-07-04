@@ -22,4 +22,28 @@ return {
       })
     end
   },
+
+  {
+    "antoinemadec/FixCursorHold.nvim",
+  },
+  {
+    "haydenmeade/neotest-jest",
+  },
+  {
+    "nvim-neotest/neotest",
+    lazy = false,
+    config = function()
+      require("neotest").setup({
+        adapters = {
+          require("neotest-jest")({
+            jestCommand = "npm test --",
+            env = { CI = true },
+            cwd = function()
+              return vim.fn.getcwd()
+            end,
+          })
+        }
+      })
+    end,
+  },
 }
